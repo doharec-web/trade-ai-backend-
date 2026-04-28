@@ -4,6 +4,9 @@ from typing import Optional, List
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+@app.get("/")
+def home():
+    return {"message": "TradeMind AI Backend Running"}
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,7 +29,7 @@ class TradeAnalysis(BaseModel):
     insights: List[str]
     suggestions: List[str]
 
-def analyze_logic(data):
+def analyze_logic(data: TradeInput):
     insights = []
     suggestions = []
 
